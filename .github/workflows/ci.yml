@@ -1,6 +1,10 @@
 name: Acromere Seenc CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
 
 env:
   ACM_GPG_PASSWORD: ${{ secrets.ACM_GPG_PASSWORD }}
