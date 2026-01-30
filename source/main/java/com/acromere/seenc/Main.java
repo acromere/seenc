@@ -1,4 +1,4 @@
-package com.avereon.seenc;
+package com.acromere.seenc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.cli.*;
@@ -234,14 +234,14 @@ public class Main {
 	private void printHelp() {
 		StringBuilder examples = new StringBuilder();
 		examples.append( "\n" );
-		examples.append( "Repos: avn, fab, mvs, psm, sbc, sod\n" );
+		examples.append( "Repos: acm, fab, mvs, psm, sbc, sod\n" );
 		examples.append( "\n" );
 		examples.append( "Config file example contents:\n" );
 		examples.append( "  type=BB\n" );
-		examples.append( "  team=avereon\n" );
+		examples.append( "  team=acromere\n" );
 		examples.append( "  username=<username>\n" );
 		examples.append( "  password=<password>\n" );
-		examples.append( "  target=file:/home/ecco/Data/avn/code/{project}/{repo}\n" );
+		examples.append( "  target=file:/home/ecco/Data/acm/code/{project}/{repo}\n" );
 
 		StringWriter writer = new StringWriter();
 		HelpFormatter formatter = new HelpFormatter();

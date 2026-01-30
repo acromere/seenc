@@ -1,4 +1,4 @@
-[build-status]: https://github.com/avereon/seenc/actions/workflows/ci.yml/badge.svg "Build status"
+[build-status]: https://github.com/acromere/seenc/actions/workflows/ci.yml/badge.svg "Build status"
 
 # Seenc ![alt text][build-status]
 
@@ -32,12 +32,12 @@ For example, here is the config file to get the `seenc` repository:
 ```
 [
   {
-    "id":"avn",
-    "name":"Avereon",
+    "id":"acm",
+    "name":"Acromere",
     "type":"GH3",
-    "orgs":"avereon",
+    "orgs":"acromere",
     "include":["seenc"],
-    "target":"/home/ecco/Data/avn/code/resource/{repo}"
+    "target":"/home/ecco/Data/acm/code/resource/{repo}"
   }
 ]
 ```
@@ -47,12 +47,12 @@ Seenc authentication information is stored in one or more JSON config files. The
 file provides the authentication information to connect to each configuration 
 id. The authentication files should NOT be stored in source control.
 
-For example, here is a mock authentication file for the `avn` config:
+For example, here is a mock authentication file for the `acm` config:
 
 ```
 [
   {
-    "id":"avn",
+    "id":"acm",
     "username":"githubuser",
     "password":"ghp_notarealgithubpersonalaccesstoken"
   }

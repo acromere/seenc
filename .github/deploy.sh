@@ -21,9 +21,9 @@ if [ "${PLATFORM}" == "linux" ]; then
   Xvfb ${DISPLAY} -screen 0 1920x1080x24 -nolisten unix &
 fi
 
-gpg --quiet --batch --yes --decrypt --passphrase=$AVN_GPG_PASSWORD --output .github/avereon.keystore .github/avereon.keystore.gpg
-ls -al .github/avereon.keystore
-sha1sum .github/avereon.keystore
+gpg --quiet --batch --yes --decrypt --passphrase=$ACM_GPG_PASSWORD --output .github/acromere.keystore .github/acromere.keystore.gpg
+ls -al .github/acromere.keystore
+sha1sum .github/acromere.keystore
 
 rm -rf target/jlink && mvn deploy -B -U -V -P testui,platform-specific-assemblies --settings .github/settings.xml --file pom.xml
 if [ $? -ne 0 ]; then exit 1; fi
@@ -31,12 +31,12 @@ if [ $? -ne 0 ]; then exit 1; fi
 echo "Build date=$(date)"
 echo "[github.ref]=${GITHUB_REF}"
 echo "[matrix.os]=${MATRIX_OS}"
-echo "Deploy path=/opt/avn/store/$RELEASE/$PRODUCT"
+echo "Deploy path=/opt/acm/store/$RELEASE/$PRODUCT"
 
 mkdir "${HOME}/.ssh"
-gpg --quiet --batch --yes --decrypt --passphrase=$AVN_GPG_PASSWORD --output $HOME/.ssh/id_rsa .github/id_rsa.gpg
-gpg --quiet --batch --yes --decrypt --passphrase=$AVN_GPG_PASSWORD --output $HOME/.ssh/id_rsa.pub .github/id_rsa.pub.gpg
-gpg --quiet --batch --yes --decrypt --passphrase=$AVN_GPG_PASSWORD --output $HOME/.ssh/known_hosts .github/known_hosts.gpg
+gpg --quiet --batch --yes --decrypt --passphrase=$ACM_GPG_PASSWORD --output $HOME/.ssh/id_rsa .github/id_rsa.gpg
+gpg --quiet --batch --yes --decrypt --passphrase=$ACM_GPG_PASSWORD --output $HOME/.ssh/id_rsa.pub .github/id_rsa.pub.gpg
+gpg --quiet --batch --yes --decrypt --passphrase=$ACM_GPG_PASSWORD --output $HOME/.ssh/known_hosts .github/known_hosts.gpg
 
 chmod 600 ${HOME}/.ssh/id_rsa
 chmod 600 ${HOME}/.ssh/id_rsa.pub
@@ -47,7 +47,7 @@ sha1sum "$HOME/.ssh/id_rsa"
 sha1sum "$HOME/.ssh/id_rsa.pub"
 sha1sum "$HOME/.ssh/known_hosts"
 
-scp -B target/*product.jar travis@avereon.com:/opt/avn/store/$RELEASE/$PRODUCT 2>&1
+scp -B target/*product.jar travis@acromere.com:/opt/acm/store/$RELEASE/$PRODUCT 2>&1
 if [ $? -ne 0 ]; then exit 1; fi
-scp -B target/main/java/META-INF/*.card travis@avereon.com:/opt/avn/store/$RELEASE/$PRODUCT 2>&1
+scp -B target/main/java/META-INF/*.card travis@acromere.com:/opt/acm/store/$RELEASE/$PRODUCT 2>&1
 if [ $? -ne 0 ]; then exit 1; fi

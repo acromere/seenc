@@ -1,4 +1,4 @@
-package com.avereon.seenc;
+package com.acromere.seenc;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.avereon.seenc;
+package com.acromere.seenc;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.slf4j.Logger;

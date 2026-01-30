@@ -1,6 +1,15 @@
-name: CI
+name: Acromere Seenc CI
 
 on: [push, pull_request]
+
+env:
+  ACM_GPG_PASSWORD: ${{ secrets.ACM_GPG_PASSWORD }}
+  ACM_KEYSTORE_PASSWORD: ${{ secrets.ACM_KEYSTORE_PASSWORD }}
+  ACM_MAVEN_REPO_USERNAME: ${{ secrets.ACM_MAVEN_REPO_USERNAME }}
+  ACM_MAVEN_REPO_PASSWORD: ${{ secrets.ACM_MAVEN_REPO_PASSWORD }}
+  ACM_XENON_REPO_USERNAME: ${{ secrets.ACM_XENON_REPO_USERNAME }}
+  ACM_XENON_REPO_PASSWORD: ${{ secrets.ACM_XENON_REPO_PASSWORD }}
+  GITHUB_REF: ${{ github.ref }}
 
 jobs:
   build:
@@ -15,16 +24,7 @@ jobs:
         java-version: 17
         java-package: jdk
     - name: Build
-      env:
-        AVN_REPO_USERNAME: ${{ secrets.AVN_REPO_USERNAME }}
-        AVN_REPO_PASSWORD: ${{ secrets.AVN_REPO_PASSWORD }}
       run: mvn test -B -U -V --settings .github/settings.xml --file pom.xml
     - name: Deploy
       if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/stable' || github.base_ref == 'refs/heads/main' || github.base_ref == 'refs/heads/stable'
-      env:
-        AVN_GPG_PASSWORD: ${{ secrets.AVN_GPG_PASSWORD }}
-        AVN_KEYSTORE_PASSWORD: ${{ secrets.AVN_KEYSTORE_PASSWORD }}
-        AVN_REPO_USERNAME: ${{ secrets.AVN_REPO_USERNAME }}
-        AVN_REPO_PASSWORD: ${{ secrets.AVN_REPO_PASSWORD }}
-        GITHUB_REF: ${{ github.ref }}
       run: .github/deploy.sh

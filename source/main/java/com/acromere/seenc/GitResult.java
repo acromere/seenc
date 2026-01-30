@@ -1,4 +1,4 @@
-package com.avereon.seenc;
+package com.acromere.seenc;
 
 public enum GitResult {
 

@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Seenc AVN Bitbucket" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.avereon.seenc.Main" />
+    <option name="MAIN_CLASS_NAME" value="com.acromere.seenc.Main" />
     <module name="seenc" />
     <option name="PROGRAM_PARAMETERS" value="-c $PROJECT_DIR$/../../../vault/reposync.properties" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="com.avereon.seenc.*" />
+        <option name="PATTERN" value="com.acromere.seenc.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

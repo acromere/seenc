@@ -3,7 +3,7 @@
   "artifact": "${project.artifactId}",
   "version": "${project.version}",
   "timestamp": "${project.timestamp}",
-  "iconUri": "https://www.avereon.com/images/icons/${project.artifactId}.png",
+  "iconUri": "https://www.acromere.com/images/icons/${project.artifactId}.png",
   "name": "${project.name}",
   "provider": "${project.organization.name}",
   "providerUrl": "${project.organization.url}",
@@ -12,16 +12,16 @@
   "description": "${project.description}",
   "copyrightSummary": "All rights reserved.",
   "licenseSummary": "${project.name} comes with ABSOLUTELY NO WARRANTY. This is open software, and you are welcome to redistribute it under certain conditions.",
-  "productUri": "https://avereon.com/download",
-  "mainClass": "com.avereon.seenc.Main",
+  "productUri": "https://acromere.com/download",
+  "mainClass": "com.acromere.seenc.Main",
   "javaVersion": "11",
   "maintainers": [
   {
     "name": "Mark Soderquist",
-    "email": "mark.soderquist@avereon.com",
+    "email": "mark.soderquist@acromere.com",
     "timezone": null,
-    "organization": "Avereon",
-    "organizationUrl": "http://www.avereon.com",
+    "organization": "Acromere",
+    "organizationUrl": "http://www.acromere.com",
     "roles": [ "Architect", "Developer" ]
   }
   ],
