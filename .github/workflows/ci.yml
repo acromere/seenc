@@ -7,6 +7,12 @@ on:
   workflow_dispatch:
 
 env:
+  ACM_PRODUCT: "seenc"
+  # The default release, should be overridden in config.sh
+  ACM_RELEASE: "latest"
+  # The default platform, should be overridden in the platform binaries jobs below
+  ACM_PLATFORM: "linux"
+
   ACM_GPG_PASSWORD: ${{ secrets.ACM_GPG_PASSWORD }}
   ACM_KEYSTORE_PASSWORD: ${{ secrets.ACM_KEYSTORE_PASSWORD }}
   ACM_MAVEN_REPO_USERNAME: ${{ secrets.ACM_MAVEN_REPO_USERNAME }}
@@ -14,9 +20,11 @@ env:
   ACM_XENON_REPO_USERNAME: ${{ secrets.ACM_XENON_REPO_USERNAME }}
   ACM_XENON_REPO_PASSWORD: ${{ secrets.ACM_XENON_REPO_PASSWORD }}
 
+  DISPLAY: ":99"
   GITHUB_REF: ${{ github.ref }}
   JAVA_VERSION: "21"
   MAVEN_PARMS: "-B -U -V --settings .github/settings.xml --file pom.xml"
+  XVFB_PARMS: "-screen 0 1920x1080x24 -nolisten unix"
 
 jobs:
   build:
@@ -54,6 +62,20 @@ jobs:
       run: |
         mvn ${{env.MAVEN_PARMS}} deploy -Dmaven.test.skip=true
 
-    - name: Publish
-      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/stable' || github.base_ref == 'refs/heads/main' || github.base_ref == 'refs/heads/stable'
-      run: .github/deploy.sh
+    - name: Deploy Product Icon
+      run: |
+        ssh -t ${{env.ACM_XENON_REPO_USERNAME}}@acromere.com "mkdir -p ${{env.PRODUCT_DEPLOY_PATH}};"
+        if [ $? -ne 0 ]; then exit 1; fi
+        scp -B target/main/images/${ACM_PRODUCT}.png ${{env.ACM_XENON_REPO_USERNAME}}@acromere.com:${PRODUCT_DEPLOY_PATH}/product.png 2>&1
+
+    - name: Deploy Product Pack
+      run: |
+        ssh -t ${{env.ACM_XENON_REPO_USERNAME}}@acromere.com "mkdir -p ${{env.PRODUCT_DEPLOY_PATH}};"
+        if [ $? -ne 0 ]; then exit 1; fi
+        scp -B target/*product.jar ${{env.ACM_XENON_REPO_USERNAME}}@acromere.com:/opt/acm/store/$RELEASE/$PRODUCT 2>&1
+
+    - name: Deploy Product Card
+      run: |
+        ssh -t ${{env.ACM_XENON_REPO_USERNAME}}@acromere.com "mkdir -p ${{env.PRODUCT_DEPLOY_PATH}};"
+        if [ $? -ne 0 ]; then exit 1; fi
+        scp -B target/main/java/META-INF/*.card ${{env.ACM_XENON_REPO_USERNAME}}@acromere.com:/opt/acm/store/$RELEASE/$PRODUCT 2>&1
