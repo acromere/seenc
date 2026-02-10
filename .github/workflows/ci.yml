@@ -1,4 +1,4 @@
-name: Acromere Seenc CI
+name: Seenc CI
 
 on:
   push:
