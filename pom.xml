@@ -96,16 +96,16 @@
 							<images>
 								<image>
 									<class>com.acromere.zenna.icon.SeencIcon</class>
-									<target>${images-folder}/seenc.png</target>
+									<target>${images-folder}/product.png</target>
 								</image>
 								<image>
 									<class>com.acromere.zenna.icon.SeencIcon</class>
-									<target>${images-folder}/seenc-light.png</target>
+									<target>${images-folder}/product-light.png</target>
 									<theme>light</theme>
 								</image>
 								<image>
 									<class>com.acromere.zenna.icon.SeencIcon</class>
-									<target>${images-folder}/seenc-dark.png</target>
+									<target>${images-folder}/product-dark.png</target>
 									<theme>dark</theme>
 								</image>
 							</images>
